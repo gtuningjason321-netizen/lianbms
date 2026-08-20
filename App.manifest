@@ -1,0 +1,12 @@
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+  <!-- 原有内容保留 -->
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <DeviceCapability Name="bluetooth" />
+    <DeviceCapability Name="bluetooth.genericAttributeProfile">
+      <Device Id="any">
+        <Function Type="serviceId:00002760-08C2-11E1-9073-0E8AC72E0001" />
+      </Device>
+    </DeviceCapability>
+  </Capabilities>
+</assembly>
