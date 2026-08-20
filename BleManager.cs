@@ -1,8 +1,11 @@
 using System;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.Devices.Bluetooth;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Devices.Enumeration;
+using Windows.Storage.Streams;
 
 public class BleManager
 {
