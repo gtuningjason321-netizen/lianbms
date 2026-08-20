@@ -1,37 +1,11 @@
-name: Build and Release EXE
-
-on:
-  push:
-    tags:
-      - 'v*'
-
 jobs:
-  build:
+  release:
     runs-on: windows-latest
-
+    permissions:
+      contents: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup .NET 8
-        uses: actions/setup-dotnet@v4
+      - uses: actions/checkout@v4
+      # build exe ...
+      - uses: softprops/action-gh-release@v2
         with:
-          dotnet-version: '8.0.x'
-
-      - name: Restore
-        run: dotnet restore LianAnBmsWin.csproj
-
-      - name: Publish
-        run: dotnet publish LianAnBmsWin.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o publish
-
-      - name: Rename EXE
-        run: |
-          cd publish
-          ren LianAnBmsMon.exe LianAnBmsMon-${{ github.ref_name }}.exe
-
-      - name: Upload to Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: publish/LianAnBmsMon-${{ github.ref_name }}.exe
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          files: "*.exe"
